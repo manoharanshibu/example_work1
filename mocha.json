@@ -1,0 +1,21 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2017-03-23T16:59:56.195Z",
+    "end": "2017-03-23T16:59:56.987Z",
+    "duration": 792
+  },
+  "failures": [],
+  "passes": [
+    {
+      "title": "should render test component",
+      "fullTitle": "app.test should render test component",
+      "duration": 10
+    }
+  ],
+  "skipped": []
+}
