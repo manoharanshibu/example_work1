@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+	<script type="text/javascript">
+		function getParameter(name) {
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(window.location.href);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		var reality = getParameter('reality');
+		var root = getParameter('root');
+		//Edit the src of the gameInclusionJs
+		console.log(root);
+		//create new script and set src and append to head
+
+		var allowed = ["argyll-static-test","argyll-static"];
+
+		if(allowed.indexOf(root) != -1) {
+			var url = "https://" + root + ".casinomodule.com/gameinclusion/library/gameinclusion.js";
+			var script = document.createElement('script');
+			script.src = url;
+			document.head.appendChild(script);
+		} else {
+			alert('Invalid root');
+		}
+
+		var timer;
+		var duration = 0;
+
+		console.log(reality);
+		var realitychecktimeout = 60 * reality;
+		console.log(realitychecktimeout);
+		var realitycheckmessage1 = "You have requested a Reality Check every %1 minutes of game play.\nYour gaming session has now reached %2 minutes.";
+		var realitycheckmessage2 = "To continue playing, select 'Continue playing' below or stop playing click 'Close Game'. To review your playing history click 'View account history'";
+
+		window.onload = function() {
+			timer = setInterval(setPluginTime, 1000);
+			netent.plugin.call("pluginReady", [], function() {} );
+			netent.plugin.call("showSystemClock", [], function(e) {}, function(e) {});
+			netent.plugin.addEventListener("dialogBoxClosed", dialogboxbuttonhandler);
+		}
+
+		function setPluginTime() {
+			duration++;
+			// Draw the timer on-screen
+			updatetimer(duration);
+		}
+
+		function dialogboxbuttonhandler(box, buttonid) {
+			if(box == "realitycheck") {
+				if(buttonid == "continue") {
+					// No code needed here, dialog box will close automatically (it is default behavior) and game play can continue.
+				} else {
+					// Player has decided to leave the game. Display the next two options to the player.
+					clearInterval(timer);
+					showseconddialogbox();
+				}
+			}
+		}
+
+		window.onerror = function() {
+			haltgame();
+		}
+
+		function haltgame() {
+			// Stop updating the plugin.
+			clearInterval(timer);
+
+			// Notify the game that the plugin has encountered an error condition.
+			netent.plugin.call("pluginError", [], function() {} );
+		}
+
+		// Update the timer on screen
+		function updatetimer(duration) {
+			var dt = new Date();
+			var durationHours = String(Math.floor(duration / 3600));
+			var durationMinutes = String(Math.floor((duration % 3600) / 60));
+			var durationSeconds = String((duration % 3600) % 60);
+
+			if(durationHours.length == 1) { durationHours = "0" + durationHours }
+			if(durationMinutes.length == 1) { durationMinutes = "0" + durationMinutes }
+			if(durationSeconds.length == 1) { durationSeconds = "0" + durationSeconds }
+			var msgStr = "Current time: " + dt.toTimeString().split(" ")[0] + ", session duration: " + durationHours + ":" + durationMinutes+":" + durationSeconds;
+
+			var params = [ { "type":"text", "text":msgStr }   ];
+
+			// Displays message to player on screen, in the game
+			netent.plugin.set("inGameMessage", params, function() { /* Message was updated */ }, function(e) { /* Something went wrong */ });
+
+			if(duration > 0 && duration%realitychecktimeout == 0) {
+				// Stop any on-going autoplay.
+				netent.plugin.call("stopAutoplay", [], function() {});
+
+				buttons = [{buttonid:"continue", buttontext:"Continue playing"}, {buttonid: "close", buttontext: "Leave game" }];
+
+				var messageToShow = realitycheckmessage1.replace("%1",Math.floor(realitychecktimeout/60));
+				messageToShow = messageToShow.replace("%2",Math.floor(duration/60));
+
+				showDialogBox("Reality check", messageToShow, buttons);
+			}
+		}
+
+		function showseconddialogbox() {
+			var params = ["realitycheck"];
+			netent.plugin.call("removeDialogbox", params, function(e) { console.log('Removed: success') }, function(e) { console.log('failed: remove dialogbox'); console.log(e) } );
+
+			// Reason code 10 can be used to send player to game history page and reason code 11 can be used to detect players coming back to lobby from this dialog interaction
+			buttons = [{buttonid:"history", action:"gotolobby", reason:10, buttontext:"Game History"},{buttonid: "lobby", action:"gotolobby", reason:11, buttontext: "Close Game" }];
+
+			var messageToShow = realitycheckmessage2;
+
+			showDialogBox("Leave game", messageToShow, buttons);
+		}
+
+		var isFirstCall = true;
+
+		function showDialogBox(header,text,buttons) {
+			if(!isFirstCall) {
+				// Avoid multiple dialogboxes, so remove the previous one (given that we have already displayed it previously).
+				var params = ["realitycheck"];
+				netent.plugin.call("removeDialogbox", params, function(e) { console.log('Removed: success') }, function(e) { console.log('failed: remove dialogbox'); console.log(e) } );
+			}
+			isFirstCall = false;
+			var params = ["realitycheck", header, text, buttons];
+			netent.plugin.call("createDialogbox", params, function(e) { console.log('Created: success') }, function(e) { console.log('failed: create dialogbox'); console.log(e) } );
+		}
+	</script>
+</head>
+<body></body>
+</html>

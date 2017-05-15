@@ -1,0 +1,10 @@
+@import "variables";
+@import "mixins";
+
+.c-title-widget {
+	&__title {
+		margin: 0;
+		@include font-size(34px);
+		font-weight: 400;
+	}
+}

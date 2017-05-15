@@ -1,0 +1,36 @@
+@import "variables";
+@import "mixins";
+
+.c-stepnav {
+	font-weight: bold;
+	letter-spacing: .03rem;
+	list-style: none;
+	margin: 0 0 $spacer;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.c-stepnav__step,
+.c-stepnav__content {
+	display: inline-block;
+}
+
+.c-stepnav__step {
+	color: $grey-70;
+}
+
+.c-stepnav__link {
+	@include link-color($brand-primary, darken($brand-primary, 10%));
+}
+
+.c-stepnav__link--active {
+	@include link-color($grey-60, $grey-60);
+
+	&:link {
+		cursor: default;
+	}
+}
+
+.c-stepnav__separator {
+	margin: 0 $spacer / 2;
+}

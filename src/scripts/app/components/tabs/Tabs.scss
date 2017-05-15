@@ -1,0 +1,58 @@
+@import "variables";
+
+// Local vars just used for relative tab positioning when selected and borders
+$_tab-padding: 10px;
+$_tab-border: 1px;
+
+.c-tabs {
+	color: $tabs-secondary;
+
+	&__labels {
+		margin: 0;
+		padding: 0;
+		border-bottom: $_tab-border solid $tabs-secondary;
+	}
+
+	&__list-item {
+		display: inline-block;
+
+		&:first-child {
+			// scss-lint:disable NestingDepth
+			.c-tabs__link {
+				border-left-color: $tabs-primary;
+			}
+		}
+
+		&.active {
+			// scss-lint:disable NestingDepth
+			.c-tabs__link {
+				background: $tabs-primary;
+				border-color: $tabs-secondary;
+				color: $tabs-link;
+				// shift tab background by $_tab-border to hide border when active
+				margin-bottom: -$_tab-border;
+				padding-bottom: $_tab-padding + $_tab-border;
+			}
+		}
+	}
+
+	&__link {
+		background: $tabs-primary;
+		border: $_tab-border solid $tabs-primary;
+		border-left-color: $tabs-primary;
+		border-bottom: 0;
+		color: $tabs-secondary;
+		display: block;
+		font-weight: 700;
+		padding: $_tab-padding 16px;
+		text-decoration: none;
+		font-size: 16px;
+	}
+
+	&__content {
+		background: $tabs-primary;
+	}
+}
+
+
+
