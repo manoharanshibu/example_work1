@@ -1,0 +1,209 @@
+@import "config";
+@import "mixins";
+
+.c-app {
+	&__header-container {
+		position: relative;
+	}
+
+	&__grid {
+		background-color: transparent;
+	}
+}
+
+@include media-breakpoint-only(xs) {
+	.c-app {
+		&.sidebar-is-open {
+			position: fixed;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+
+// Fixed mobile header
+@include media-breakpoint-down(md) {
+	.c-app__header-container {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 99;
+		padding: 0;
+	}
+}
+
+// TODO: find out how to disable the button in the zopim account rather than hiding it.
+// hide zopim chat button
+.zEWidget-launcher {
+	display: none;
+}
+
+.c-main-wrapper {
+	z-index: 1;
+	position: relative;
+	background: $main-bg;
+	flex-wrap: nowrap;
+}
+
+.c-main-content {
+	display: flex;
+	flex-flow: column nowrap;
+	position: relative;
+	z-index: 0;
+	background: $main-bg;
+	flex: 1;
+
+	@include media-breakpoint-down(sm) {
+		overflow-x: hidden;
+	}
+
+	@include media-breakpoint-up(md) {
+		overflow-y: auto;
+	}
+
+	&--casino {
+		color: $casino-text-primary;
+		background-color: $casino-main-bg;
+
+		@include headings {
+			color: $casino-text-secondary;
+		}
+	}
+
+	&__accounts-view {
+		background: $main-accounts-bg;
+		color: $main-accounts-text;
+	}
+}
+
+[class*="c-sidebar"] {
+	width: 100%;
+	bottom: 0;
+	min-width: $sidebar-width;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+
+	@include media-breakpoint-between(xs, md) {
+		position: fixed;
+	}
+
+	@include media-breakpoint-up(sm) {
+		width: $sidebar-width;
+	}
+
+	&[class*="--burger"] {
+		background: $sidebar-burger-bg;
+		color: $sidebar-burger-text;
+		left: -100%;
+		overflow: auto;
+		@include transition-2(left);
+
+		&.burger--is-open {
+			left: 0;
+			box-shadow: 4px 4px 10px $main-shadow;
+		}
+
+		@include media-breakpoint-up(sm) {
+			left: -$sidebar-width;
+		}
+
+		@include media-breakpoint-up(lg) {
+			position: static;
+		}
+
+		@include media-breakpoint-up(lg) {
+			.burger-is-static & {
+				position: static;
+				left: initial;
+			}
+		}
+
+		@include media-breakpoint-up(xl) {
+			position: static;
+			left: initial;
+		}
+	}
+
+	&[class*="--bet-slip"] {
+
+		background: $sidebar-betslip-bg;
+		@include media-breakpoint-only(xs) {
+			background: rgba(0, 0, 0, 0.8);
+		}
+		color: $sidebar-betslip-text;
+		right: -100%;
+		overflow-y: hidden;
+		@include transition-2(right);
+		&.is-open {
+			right: 0;
+			bottom: 0;
+			box-shadow: -4px 4px 10px $main-shadow;
+		}
+
+		@include media-breakpoint-up(lg) {
+			right: -$sidebar-width;
+		}
+
+		// Always show betslip on extra large screens
+		@include media-breakpoint-up(xl) {
+			left: initial;
+			// margin-top: -$breadcrumb-height;
+			position: static;
+		}
+	}
+}
+
+.c-nav-filters {
+	@include media-breakpoint-down(md) {
+		display: none !important;
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.c-nav-filters {
+		display: block;
+	}
+}
+
+.o-container {
+	display: flex;
+
+	&__sidebar {
+		flex: 0 0 $sidebar-width;
+
+		&--secondary {
+			background: $brand-danger;
+		}
+	}
+
+	&__content {
+		flex: 1 1 auto;
+	}
+}
+
+.modal-window {
+	box-shadow: 1px 1px 8px 3px $black;
+	background: $modal-bg-color;
+	color: $modal-text-color;
+	padding: $spacer / 2;
+
+	.modal-header {
+		margin-bottom: $spacer;
+
+		h4 {
+			display: inline;
+		}
+	}
+
+	.modal-body {
+		min-height: 100px;
+	}
+
+	.btn {
+		@include button-bg($btn-primary-bg);
+		color: $btn-primary-text;
+		margin-top: $spacer;
+  	}
+}

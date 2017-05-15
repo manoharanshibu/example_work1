@@ -1,0 +1,163 @@
+// Linting disabled for this bespoke component's styles
+@import "mixins";
+@import "variables";
+
+.audio-boom-table {
+	height: auto;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	background: $audio-boom-table-bg;
+
+
+	.table-row {
+		display: table-row;
+
+		&:last-child .table-cell.large {
+			padding-bottom: 0;
+		}
+	}
+
+	.table-cell {
+		position: relative;
+		display: table-cell;
+		border: 0;
+		vertical-align: text-top;
+		height: auto;
+    border-bottom: 1px solid $main-bg;
+		&.large {
+			width: 50%;
+		}
+
+		.sub-cell {
+			height: 110px;
+			cursor: default;
+			padding: $spacer / 2;
+			overflow: auto;
+			background-color: $audio-boom-cell-bg;
+			color: $audio-boom-cell-text;
+
+			&.left {
+				width: 45%;
+				float: left;
+			}
+
+			&.image {
+				margin-left: 45%;
+				overflow: hidden;
+				position: relative;
+				background-repeat: no-repeat !important;
+				background-size: cover;
+				background-position: center;
+			}
+
+			&.no-hover {
+				cursor: default;
+			}
+		}
+
+		.episode-title {
+			@include font-size(16px);
+			margin: 0;
+		}
+
+		.podcast-title {
+			margin-bottom: $spacer / 2;
+		}
+
+	}
+
+
+	.no-permission {
+		background-color: rgba(0, 0, 0, 0.8);
+		position: absolute;
+		display: flex;
+		align-items: center;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		cursor: default;
+
+		p {
+			@include font-size(20px);
+			text-align: center;
+			width: 100%;
+			color: white;
+		}
+	}
+
+}
+
+@include media-breakpoint-down(xs) {
+	.audio-boom-table .table-row .table-cell {
+
+		&.large {
+			margin-bottom: $spacer;
+			min-height: 220px;
+		}
+
+		h5{
+			margin: ($spacer / 2) 0;
+		}
+
+		.sub-cell {
+			background: rgba($audio-boom-table-bg, .9);
+			border-radius: 2px;
+
+			&.left {
+				width: 90%;
+		    box-sizing: border-box;
+		    height: auto;
+		    padding: 1.42857rem;
+		    z-index: 100;
+		    position: relative;
+		    margin: 5%;
+			}
+
+			&.image {
+				margin-left: 0;
+		    height: 220px;
+		    box-sizing: border-box;
+		    position: absolute;
+		    width: 100%;
+		    z-index: 90;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(sm) {
+
+	.audio-boom-table {
+
+		.table-row {
+			display: flex;
+			flex-flow: column;
+
+			&:last-child .table-cell:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.table-cell {
+
+			h5 {
+				margin: ($spacer / 3) 0;
+			}
+
+			&.large {
+				width: initial;
+				padding: 0;
+				margin-bottom: $spacer / 2;
+
+				&:last-child {
+					padding-left: 0;
+				}
+			}
+			.sub-cell {
+				height: 152px;
+			}
+		}
+	}
+}

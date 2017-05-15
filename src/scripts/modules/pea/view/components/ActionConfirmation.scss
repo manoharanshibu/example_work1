@@ -1,0 +1,51 @@
+@import "variables";
+
+.c-action-confirmation {
+	&__notification {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: $fade-out;
+	}
+
+	&__notification-inner {
+		padding: $spacer * 2;
+		background-color: $black;
+		color: $white;
+	}
+
+	&__icon {
+		color: $brand-success;
+	}
+
+	&__success-checkmark {
+		margin-left: $spacer / 2;
+	}
+
+	&__success-checkmark-circle,
+	&__success-checkmark-delay-tick {
+		stroke: $brand-primary;
+	}
+
+	&__success-checkmark-circle {
+		animation: draw 2s 0s forwards;
+	}
+
+	&__success-checkmark-delay-tick {
+		animation: draw 1.5s .8s forwards;
+	}
+}
+
+@keyframes draw {
+  from {}
+  to {
+    stroke-dashoffset: 0;
+  }
+}
