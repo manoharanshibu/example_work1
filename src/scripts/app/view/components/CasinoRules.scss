@@ -1,0 +1,61 @@
+@import "variables";
+@import "mixins";
+
+.c-casino-rules {
+	&__game {
+		background: $casino-rules-game-bg;
+		padding-bottom: 1rem;
+		text-align: center;
+	}
+
+	&__main-content {
+		background: $casino-rules-main-content-bg;
+		color: $casino-rules-main-content-text;
+	}
+
+	&__main-content-panel {
+
+		&--info {
+			margin: ($spacer * 2) $spacer;
+			@include font-size(16px);
+			line-height: calculate-rem(22px);
+		}
+
+		&--images {
+			margin-top: $spacer;
+
+			@include media-breakpoint-down(md) {
+				margin-left: $spacer;
+				margin-right: $spacer;
+			}
+		}
+
+		&--image-box {
+			text-align: center;
+		}
+
+		&--image {
+			padding: $spacer;
+			box-sizing: border-box;
+			margin: 0 auto;
+			max-width: 98%;
+			max-height: 100%;
+			border: 1px solid $grey-85;
+		}
+
+
+	}
+
+	&__heading {
+		border-bottom: 3px solid $casino-rules-border;
+		border-top: 3px solid $casino-rules-border;
+		padding: 1rem 0 1.5rem;
+		text-transform: uppercase;
+	}
+
+	&__sub-heading {
+		display: block;
+		font-size: 20px;
+		text-transform: uppercase;
+	}
+}

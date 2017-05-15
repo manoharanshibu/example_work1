@@ -1,0 +1,164 @@
+@import "variables";
+@import "mixins";
+
+.c-casino-game {
+	background-color: $casino-tile-bg;
+	background-repeat: no-repeat;
+	background-size: 80%, cover;
+	background-position: 50% $spacer, 50% 0;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		.c-casino-game__overlay {
+			bottom: 0;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		.c-casino-game__overlay {
+			bottom: -95px;
+			transition: bottom 0.2s ease-out;
+		}
+	}
+
+	&--has-rules {
+		cursor: pointer;
+	}
+
+	p {
+		color: $white;
+	}
+
+	@include media-breakpoint-up(md) {
+		margin-left: 1px;
+
+	}
+
+	.c-casino-widget & {
+		height: 130px;
+		background-position: center center;
+
+		@include media-breakpoint-up(xl) {
+			height: 160px;
+		}
+	}
+
+	.c-casino-widget__baja & {
+		height: 215px;
+	}
+
+	&--game-info-view {
+		height: 50px;
+
+		.c-casino-game__title,
+		.c-casino-game__jackpot-banner {
+			display: none;
+		}
+	}
+
+	@include hover {
+		.c-casino-game__jackpot-banner {
+			top: 0;
+			bottom: 79px;
+		}
+
+		.c-casino-game__play-btn {
+			opacity: 1;
+		}
+	}
+
+	&__jackpot-banner {
+		height: 48px;
+		position: absolute;
+		left: 0;
+		top: -200px;
+		right: 0;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		line-height: calculate-rem(26px);
+		@include font-size(26px);
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+
+		background: $casino-tile-jackpot-banner-bg;
+		color: $casino-tile-jackpot-banner-text;
+
+		box-sizing: border-box;
+		transition: top 0.2s ease-out;
+	}
+
+	&__jackpot-banner-inner {
+		margin: 0;
+	}
+
+	&__overlay {
+		padding: ($spacer / 3);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: $casino-action-bg;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		overflow: hidden;
+	}
+
+	&__title {
+		padding-bottom: ($spacer / 3);
+		font-weight: 600;
+		@include font-size(13px);
+		text-align: center;
+	}
+
+	&__button-container {
+		display: flex;
+	}
+
+	&__button-container--no-balance {
+		@include hover {
+			.c-casino-game__play-btn--real {
+				display: none;
+			}
+
+			.c-casino-game__deposit-btn {
+				display: block !important;
+			}
+		}
+	}
+
+	&__play-btn {
+		display: inline-block;
+	}
+
+	&__deposit-btn {
+		display: none !important;
+	}
+
+	&__ribbon {
+		background: $brand-success;
+		position: absolute;
+	    top: 23px;
+	    width: 200px;
+	    line-height: 20px;
+	    left: -68px;
+	    text-align: center;
+	    color: $white;
+	    transform: rotate(-45deg);
+
+		&--win {
+			background: $brand-success;
+		}
+
+		&--jackpot {
+			background: $brand-secondary;
+		}
+	}
+}

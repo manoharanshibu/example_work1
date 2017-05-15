@@ -1,0 +1,64 @@
+@import "variables";
+@import "mixins";
+
+.c-breadcrumb-dropdown {
+	width: 100%;
+	line-height: $breadcrumb-height;
+
+	padding-left: $spacer;
+	padding-right: $spacer;
+
+	margin-left: -$spacer;
+	margin-right: -$spacer;
+
+	color: inherit;
+
+	&__menu {
+		@include drop-shadow-2;
+		max-height: 75vh;
+		overflow-y: auto;
+		letter-spacing: initial;
+		position: absolute;
+		top: $breadcrumb-height;
+		left: 0;
+		min-width: 100%;
+		z-index: 12;
+		color: inherit;
+
+		&--just-dropdown {
+			@include media-breakpoint-down(md) {
+				overflow-y: scroll !important;
+			}
+
+			@include media-breakpoint-up(lg) {
+				display: none;
+			}
+		}
+	}
+
+	&__title {
+		display: flex;
+	}
+
+	&__title-text {
+		cursor: default;
+	}
+
+	&__title-icon {
+		top: 2px;
+		left: 4px;
+		position: relative;
+	}
+
+	&__item {
+		height: $breadcrumb-height;
+		line-height: $breadcrumb-height;
+		white-space: nowrap;
+	}
+
+	&__link {
+		display: block;
+		padding: 0 $spacer;
+		@include link-color(inherit, inherit);
+	}
+}

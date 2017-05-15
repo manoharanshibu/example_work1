@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixins";
+
+$_betslip-toggle-width--mobile: 70px;
+$_betslip-toggle-width--tablet: 37px;
+
+.c-betslip-toggle {
+	margin-left: $spacer / 2;
+	width: $_betslip-toggle-width--mobile;
+	color: $white;
+	cursor: pointer;
+	float: left;
+
+	@include media-breakpoint-only(lg) {
+		width: $_betslip-toggle-width--tablet;
+		position: relative;
+	}
+
+	.u-pulsate {
+		animation-name: pulsate;
+		animation-duration: 0.3s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+	}
+
+	&__icon {
+		@include font-size(32px);
+		position: absolute;
+		top: 11px;
+
+		@include media-breakpoint-only(lg) {
+			top: auto;
+		}
+	}
+
+	&__lozenge {
+		z-index: 2;
+		position: absolute;
+		top: 18px;
+		right: 20px;
+
+		@include media-breakpoint-only(lg) {
+			top: 8px;
+		}
+	}
+
+	&__opened {
+		font-family: $font-family-sans-serif;
+	}
+
+	&__icon--closed {
+		color: $betslip-toggle-closed;
+	}
+
+	&__icon--opened {
+		color: $betslip-toggle-opened;
+	}
+
+	// Header only
+	&--header-minimal-view {
+		margin-left: -1.6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	// Breadcrumbs only
+	&--breadcrumbs {
+		margin-right: 0;
+
+		@include media-breakpoint-only(xl) {
+			display: none;
+		}
+	}
+}

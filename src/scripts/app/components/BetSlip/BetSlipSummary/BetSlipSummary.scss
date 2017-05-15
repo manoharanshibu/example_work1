@@ -1,0 +1,41 @@
+@import "mixins";
+@import "variables";
+
+.c-betslip-summary {
+	color: $betslip-summary-text;
+
+	&--is-empty {
+		padding: $spacer / 2;
+	}
+
+	&__checkbox {
+		margin-right: 5px;
+	}
+
+	&__section {
+		padding: ($spacer / 3) $spacer / 2;
+		border-top: 1px solid $betslip-summary-section-border;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&--accept {
+			@include custom-dropdown-styles(13px, 16px);
+		}
+
+		&--potential-winnings {
+			@include font-size(16px);
+			font-weight: bold;
+		}
+	}
+
+	&__amount {
+		@include font-size(16px);
+		font-weight: bold;
+	}
+
+	&__price-change-options {
+		width: 140px;
+	}
+}

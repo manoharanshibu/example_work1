@@ -1,0 +1,90 @@
+@import "variables";
+@import "mixins";
+
+.c-closed-bets {
+	padding-bottom: $spacer / 2;
+
+	&__summary {
+		padding: ($spacer / 2);
+		background: $betslip-info-closed-bg;
+		color: $betslip-info-closed-text;
+	}
+
+	&__body {
+		background: $betslip-body-closed-bg;
+		border-top: 1px solid  $betslip-info-closed-border;
+		color: $betslip-body-closed-text;
+		padding: ($spacer / 2) 0;
+	}
+
+	&__section {
+		background: $betslip-selections-bg;
+		margin: ($spacer / 5) ($spacer / 2);
+	}
+
+	&__section-header {
+		background-color: $betslip-grouped-header-bg;
+		padding: ($spacer / 4) ($spacer / 2);
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	&__section-title {
+		margin: 0;
+		@include font-size(13px);
+	}
+
+	&__selection-rows {
+		padding: ($spacer / 2);
+		margin: 0;
+	}
+
+
+	&__single-bet-group {
+		border-left: solid 5px $closed-bets-border-color;
+
+		&--won {
+			// scss-lint:disable NestingDepth
+			.c-closed-bets__section-header {
+				border-color: $betslip-section-header-won-bg;
+			}
+
+		}
+
+		&--lost {
+			border-left: 0;
+		}
+	}
+
+
+	&__single-bet-group-info {
+		padding: $spacer / 2;
+		background-color: $white;
+
+		&--won,
+		&--lost {
+			list-style: square;
+		}
+
+		&--won {
+			color: $closed-bets-win-border;
+		}
+
+		&--lost {
+			color: $closed-bets-lose-border;
+		}
+	}
+
+	&__more-button {
+		padding: 0 ($spacer / 2);
+	}
+
+	&__total-odds {
+		padding: $spacer / 4 $spacer / 2;
+		margin-right: $spacer;
+	}
+
+	&__footer {
+		padding: 0 ($spacer / 2) $spacer;
+	}
+}

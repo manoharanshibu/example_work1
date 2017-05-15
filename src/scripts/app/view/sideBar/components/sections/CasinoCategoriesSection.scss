@@ -1,0 +1,20 @@
+@import "variables";
+@import "mixins";
+
+[class*="c-burger__icon-"] {
+	position: relative;
+	padding: ($spacer / 2) $spacer ($spacer / 2) 60px;
+
+	&.c-burger-section__item:last-of-type {
+		padding-bottom: $spacer;
+	}
+
+	&[class*="casino"] {@include casino-icon("/images/icons/casino-allgames.png")};
+	&[class*="roulette"] {@include casino-icon("/images/icons/casino-roulette.png")};
+	&[class*="blackjack"] {@include casino-icon("/images/icons/casino-blackjack.png")};
+	&[class*="table"] {@include casino-icon("/images/icons/casino-table.png")};
+	&[class*="slots"] {@include casino-icon("/images/icons/casino-slots.png")};
+	&[class*="jackpot"] {@include casino-icon("/images/icons/casino-jackpot.png")};
+	&[class*="all"] {@include casino-icon("/images/icons/casino-allgames.png")};
+	&[class*="promotions"] {@include casino-icon("/images/icons/casino-promo.png")};
+}

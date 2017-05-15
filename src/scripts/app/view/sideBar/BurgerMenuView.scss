@@ -1,0 +1,25 @@
+@import "variables";
+@import "mixins";
+
+.c-sidebar--burger {
+	@include media-breakpoint-up(lg) {
+		margin-top: -$breadcrumb-height;
+	}
+
+	padding-bottom: 40px;
+
+	@include media-breakpoint-down(xl) {
+		padding-bottom: 80px;
+	}
+
+	@include media-breakpoint-between(xs, md) {
+		//@include position-over-breadcrumbs;
+		top: $header-offset;
+	}
+}
+
+.c-burger {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow-x: hidden;
+}

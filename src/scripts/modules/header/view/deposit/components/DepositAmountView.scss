@@ -1,0 +1,53 @@
+@import "mixins";
+@import "variables";
+
+.c-deposit-amount {
+
+	&__continue {
+		margin-top: $spacer * 2;
+
+		@include media-breakpoint-between(xs, md) {
+			.g-menu__link {
+				display: flex;
+				flex: 1;
+				justify-content: center;
+			}
+		}
+	}
+
+	&__container {
+		display: flex;
+		align-items: center;
+	}
+
+	&__button-contents {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__preset-button--container {
+		display: flex;
+		align-items: center;
+	}
+
+	&__promo-buttons-container {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: $spacer;
+	}
+
+	&__redeemed {
+		display: block;
+		margin-bottom: 1em;
+	}
+
+  	&__btn-newcard {
+		margin-right: $spacer / 2;
+	}
+
+	&__red-warning {
+		color: #ff0000 !important;
+		font-weight: bold;
+	}
+}

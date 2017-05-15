@@ -1,0 +1,45 @@
+@import "variables";
+@import "mixins";
+
+.c-combi-bets {
+
+	padding: 0 ($spacer / 2);
+	background: $betslip-grouped-bg;
+	color: $betslip-grouped-text;
+	margin-bottom: $spacer / 4;
+	box-shadow: 2px 3px 6px -1px darken($betslip-grouped-bg, 10%);
+
+
+	&__header {
+		padding: $spacer / 2 0;
+	}
+
+	&__title {
+		margin: 0;
+		display: inline-block;
+		font-weight: bold;
+	}
+
+	&__body {
+		padding-bottom: $spacer / 2;
+	}
+
+	&__icon {
+		margin-left: 5px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	&__each-way {
+		vertical-align: middle;
+	}
+
+	&__each-way-label {
+		padding-right: $spacer / 4;
+	}
+
+	&__price-change-error {
+		padding: ($spacer / 3) 0;
+		color: $brand-error--secondary;
+	}
+}

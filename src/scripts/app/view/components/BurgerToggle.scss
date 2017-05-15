@@ -1,0 +1,73 @@
+@import "variables";
+
+.c-burger-toggle {
+	cursor: pointer;
+
+	&__spinner {
+		position: relative;
+		height: 50px;
+		width: 34px;
+
+		* {
+			transition: all 0.3s;
+			box-sizing: border-box;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(3);
+			position: absolute;
+			z-index: 3;
+			opacity: 0;
+			left: 10px;
+			top: 20px;
+		}
+
+		input[type="checkbox"]:checked + .spinner-label > .horizontal {
+			opacity: 0;
+		}
+
+		input[type="checkbox"]:checked + .spinner-label > .diagonal.part-1 {
+			transform: rotate(135deg);
+			margin-top: 10px;
+		}
+
+		input[type="checkbox"]:checked + .spinner-label > .diagonal.part-2 {
+			transform: rotate(-135deg);
+			margin-top: -11px;
+		}
+
+		label {
+			cursor: pointer;
+			position: absolute;
+			z-index: 0;
+			height: 19px;
+			width: 24px;
+			top: 16px;
+			left: 4px;
+		}
+
+		.spinner-label__spinner {
+			position: absolute;
+			height: 3px;
+			width: 100%;
+			background-color: $burger-spinner-bg;
+		}
+
+		.diagonal.part-1 {
+			position: relative;
+			float: left;
+		}
+
+		.horizontal {
+			position: relative;
+			float: left;
+			margin-top: 5px;
+		}
+
+		.diagonal.part-2 {
+			position: relative;
+			float: left;
+			margin-top: 5px;
+		}
+	}
+}

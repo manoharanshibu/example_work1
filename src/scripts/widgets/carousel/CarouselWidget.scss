@@ -1,0 +1,117 @@
+@import "variables";
+@import "mixins";
+@import "gridlex-vars";
+
+.c-carousel {
+	max-width: 100%;
+	width: 100%;
+	min-height: 40px;
+	position: relative;
+	overflow: hidden;
+
+	//hide nuka-carousel overflow so that we dont see the slides sliding off the edge of the page..
+	.slider {
+		overflow: hidden !important;
+	}
+
+
+	&--multiple {
+		// this is to override some styles on the nuka carousel to get the slides to
+		// align exactly to the edge of the slider when showing multiple
+		.slider-frame {
+			margin: 0 !important;
+		}
+	}
+
+	&--multiple-not-enough-slides {
+		.slider-frame {
+			margin: 0 !important;
+		}
+	}
+
+	.c-promotion-widget {
+		padding: 0;
+		margin-bottom: 0;
+	}
+
+	&__container {
+		position: relative;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__tabs-container {
+		height: 38px;
+	}
+
+	&__tab {
+		height: 38px;
+		padding: 0 $spacer / 2;
+		display: inline-block;
+
+		cursor: pointer;
+		box-sizing: border-box;
+
+		color: $carousel-tab-text;
+		line-height: 38px;
+
+		background-color: $carousel-tab-bg;
+		transition: background-color ease .5s;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-align: center;
+
+		@include hover {
+			background-color: $carousel-tab-hover-bg;
+		}
+
+		&.is-active {
+			background-color: $carousel-tab-active-bg;
+		}
+	}
+
+	&__arrow {
+		width: $spacer;
+
+		position: absolute;
+		top: calc(50% - 12.5px);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		color: $carousel-arrow-text;
+
+		background-color: $carousel-arrow-bg;
+
+		z-index: 10;
+		cursor: pointer;
+		transition: background-color ease 0.5s, opacity ease 0.5s;
+
+		opacity: 0;
+
+		&--is-visible {
+			opacity: 1;
+		}
+
+		&--right {
+			right: 0;
+		}
+
+		&--left {
+			left: 0;
+		}
+
+		@include hover {
+			background-color: $carousel-arrow-hover-bg;
+		}
+	}
+
+	&__arrow-icon {
+		line-height: 10px;
+		padding: $spacer / 2 0;
+	}
+}

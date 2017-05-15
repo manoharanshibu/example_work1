@@ -1,0 +1,15 @@
+@import "variables";
+
+.c-deposit-confirm {
+	&__totals {
+		border-top: 2px solid $deposit-confirm-border;
+	}
+
+	&__header {
+		margin: 0;
+	}
+
+	&__large-icon {
+		color: $brand-primary;
+	}
+}

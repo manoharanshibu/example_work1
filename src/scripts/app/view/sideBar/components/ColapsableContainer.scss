@@ -1,0 +1,32 @@
+@import "variables";
+@import "mixins";
+@import "gridlex-vars";
+
+.c-colapsable-container {
+	margin-bottom: $spacer / 2;
+	box-shadow: 0 6px 7px -3px $market-view-box-shadow;
+	@include transition-vendor(margin-bottom 0.1s ease-out);
+
+	&__header {
+		padding: $spacer / 2;
+		cursor: pointer;
+		font-weight: 600;
+		background: $single-event-headers-bg;
+		color: $single-event-headers-text;
+		border-bottom: 2px solid $single-event-headers-border;
+
+		@include hover {
+			color: $market-view-header-hover;
+		}
+	}
+
+	&__icon {
+		margin-right: $spacer / 2;
+		@include font-size(18px);
+		line-height: calculate-rem(16px);
+
+		&--expanded {
+			color: $market-view-icon-expanded;
+		}
+	}
+}

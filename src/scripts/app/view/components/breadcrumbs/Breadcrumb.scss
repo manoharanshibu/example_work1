@@ -1,0 +1,267 @@
+@import "variables";
+@import "mixins";
+
+.c-breadcrumbs {
+	@include media-breakpoint-up(lg) {
+		&:not(.c-breadcrumbs-burger-off) {
+			margin-left: $sidebar-width;
+		}
+
+		height: $breadcrumb-height;
+		background: $breadcrumbs-bg;
+		box-shadow: 0 6px 16px 0 $main-shadow;
+	}
+
+	@include media-breakpoint-up(xl) {
+		&:not(.c-breadcrumbs-full-width) {
+			margin-right: $sidebar-width;
+		}
+
+		.burger-is-static & {
+			margin-right: 0;
+		}
+	}
+
+	&__burger-toggle {
+		margin-top: 1px;
+		padding-right: 4px;
+
+		@include font-size(18px);
+		line-height: 18px;
+		cursor: pointer;
+	}
+
+	&__scrolling-list {
+		display: inline-flex;
+		flex-flow: row nowrap;
+		height: 100%;
+	}
+
+	&__home-icon {
+		color: $breadcrumb-home;
+		line-height: 1em;
+		@include font-size(17px);
+	}
+
+	&__title {
+		// Ensure full height is used for clickable area
+		display: flex;
+		flex-grow: 1;
+	}
+
+	&__link {
+		// Ensure full height is used for clickable area
+		display: flex;
+		align-items: center;
+	}
+}
+
+.c-breadcrumbs__section {
+	@include font-size(13px);
+	display: flex;
+	flex-flow: row nowrap;
+	padding-left: $spacer;
+	padding-right: $spacer;
+	align-items: center;
+	text-transform: uppercase;
+	position: relative;
+	cursor: pointer;
+	letter-spacing: 0.5px;
+	height: $breadcrumb-height;
+	flex-shrink: 0;
+	float: left;
+
+	&--no-upper-case {
+	  text-transform: none;
+	}
+
+	&--1 {
+		$_this-bg-color: $breadcrumbs-section-1-bg;
+		background-color: $_this-bg-color;
+		color: $breadcrumbs-section-1-text;
+		box-sizing: border-box;
+		cursor: auto;
+		&::after {
+			@include breadcrumb-triangle($_this-bg-color);
+			z-index: 2;
+		}
+
+		@include hover {
+			background-color: darken($breadcrumbs-section-1-hover-bg, 10%);
+			// scss-lint:disable NestingDepth
+			&::after {
+				@include breadcrumb-triangle(darken($breadcrumbs-section-1-hover-bg, 10%));
+			}
+		}
+
+		&__dropdown {
+			z-index: 10;
+		}
+
+		.c-breadcrumb-dropdown__menu {
+			background-color: $breadcrumbs-section-2-hover-bg;
+
+			// scss-lint:disable NestingDepth
+			a {
+				@include hover {
+					background: darken($breadcrumbs-section-2-hover-bg, 10%);
+				}
+			}
+		}
+	}
+
+	&--2 {
+		$_this-bg-color: $breadcrumbs-section-2-bg;
+		background-color: $_this-bg-color;
+		color: $breadcrumbs-section-2-text;
+
+		&::after {
+			@include breadcrumb-triangle($_this-bg-color);
+		}
+
+		@include hover {
+			background-color: darken($breadcrumbs-section-2-hover-bg, 10%);
+			// scss-lint:disable NestingDepth
+			&::after {
+				@include breadcrumb-triangle(darken($breadcrumbs-section-2-hover-bg, 10%));
+			}
+		}
+
+		&__dropdown {
+			z-index: 10;
+		}
+
+		.c-breadcrumb-dropdown__menu {
+			background-color: $breadcrumbs-section-2-hover-bg;
+
+			// scss-lint:disable NestingDepth
+			a {
+				@include hover {
+					background: darken($breadcrumbs-section-2-hover-bg, 10%);
+				}
+			}
+		}
+	}
+
+	&--3 {
+		$_this-bg-color: $breadcrumbs-section-3-bg;
+		background-color: $_this-bg-color;
+		color: $breadcrumbs-section-3-text;
+
+		&::after {
+			@include breadcrumb-triangle($_this-bg-color);
+		}
+
+		@include hover {
+			background-color: darken($breadcrumbs-section-3-hover-bg, 10%);
+			// scss-lint:disable NestingDepth
+			&::after {
+				@include breadcrumb-triangle(darken($breadcrumbs-section-3-hover-bg, 10%));
+			}
+		}
+
+		&__dropdown {
+			z-index: 10;
+		}
+
+		.c-breadcrumb-dropdown__menu {
+			background-color: $breadcrumbs-section-3-hover-bg;
+			// scss-lint:disable NestingDepth
+			a {
+				@include hover {
+					background: darken($breadcrumbs-section-3-hover-bg, 10%);
+				}
+			}
+		}
+	}
+
+	&--4 {
+		background-color: transparent;
+		color: $breadcrumbs-section-4-text;
+	}
+
+	&--string {
+		cursor: auto;
+		pointer-events: none;
+	}
+
+	&--home-icon {
+		// Ensure full height is used for clickable area
+		flex-flow: column nowrap;
+
+		a {
+			@include font-size(14px);
+			@include link-color($sidebar-burger-link-text, $sidebar-burger-link-text-hover);
+			// scss-lint:disable NestingDepth
+			i {
+				margin-right: 4px;
+			}
+		}
+	}
+}
+
+// MOBILE ONLY
+@include media-breakpoint-only(xs) {
+	.c-breadcrumbs {
+		&__section {
+			&--1 {
+				// scss-lint:disable NestingDepth
+				&::after {
+					@include breadcrumb-triangle-shadow;
+				}
+			}
+		}
+
+		&__scrolling-list {
+			background: linear-gradient(to left, transparent 90%, $breadcrumbs-mobile-bg 10%);
+		}
+	}
+}
+
+// MOBILE THAT WILL BE APPLIED TO TABLET UNLESS OVERRIDDEN
+@include media-breakpoint-between(xs, md) {
+	.c-breadcrumbs {
+		max-width: 100vw;
+
+		&__section {
+			justify-content: center;
+			width: auto;
+			height: auto;
+
+			&--1 {
+				justify-content: flex-start;
+				padding-left: $spacer / 2;
+				padding-right: $spacer / 2;
+			}
+
+			&--2,
+			&--3,
+			&--4 {
+				padding-left: $spacer;
+				padding-right: $spacer / 2;
+			}
+		}
+
+		&__scrolling-list {
+			overflow-x: scroll;
+			overflow-y: hidden;
+			width: 100%;
+		}
+	}
+}
+
+// TABLET ONLY
+@include media-breakpoint-between(sm, md) {
+	.c-breadcrumbs {
+		&__title {
+			width: 100%;
+		}
+
+		&__section {
+			&--1 {
+				padding-left: $spacer;
+				padding-right: $spacer;
+			}
+		}
+	}
+}

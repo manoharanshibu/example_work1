@@ -1,0 +1,12 @@
+@import "variables";
+@import "mixins";
+
+.c-competition-view {
+	&__outrights {
+		margin-top: $spacer;
+
+		&--no-events {
+			margin-top: 0;
+		}
+	}
+}

@@ -1,0 +1,33 @@
+@import "variables";
+@import "mixins";
+
+.c-chat-toggle {
+	margin-right: $spacer;
+	margin-bottom: $spacer * 0.75;
+	padding: $spacer / 2 $spacer;
+	border-radius: $spacer * 2;
+
+	position: fixed;
+	bottom: 0;
+	right: 0;
+
+	display: none;
+
+	@include font-size(18px);
+	font-weight: 700;
+	color: $chat-toggle-text;
+
+	background-color: $chat-toggle-bg;
+
+	z-index: 500;
+
+	&__icon {
+		margin-right: $spacer / 2;
+	}
+}
+
+@include media-breakpoint-up(xl) {
+	.c-chat-toggle {
+		display: block;
+	}
+}

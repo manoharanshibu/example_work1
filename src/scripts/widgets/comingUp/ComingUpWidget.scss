@@ -1,0 +1,87 @@
+@import "variables";
+@import "mixins";
+
+$_versus-width-sm-and-up: 248px;
+$_league-width-sm-and-up: 153px;
+
+$_versus-width-xs: 202px;
+$_league-width-xs: 95px;
+
+.c-coming-up {
+	&__row {
+		cursor: pointer;
+		line-height: calculate-rem(16px);
+		border-bottom: 1px solid $table-border;
+	}
+
+	&__event-info {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	@include media-breakpoint-only(xs) {
+
+		&__versus {
+			width: $_versus-width-xs;
+		}
+
+		.c-event-info-view__league {
+			width: $_league-width-xs;
+			display: inline-block;
+			vertical-align: text-bottom;
+		}
+	}
+
+}
+
+@include media-breakpoint-up(sm) {
+	.c-bet-slip {
+		.c-coming-up {
+			&__versus,
+			.c-event-info-view__league {
+				display: inline-block;
+			}
+
+			&__versus {
+				width: $_versus-width-sm-and-up;
+			}
+
+			.c-event-info-view__league {
+				width: $_league-width-sm-and-up;
+				vertical-align: text-bottom;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(xs) {
+	.c-coming-up {
+		&__cell {
+			padding: ($spacer / 2) ($spacer / 3);
+		}
+	}
+}
+
+@include media-breakpoint-up(sm) {
+	.c-coming-up {
+		&__event-info {
+			[class*='icon'] {
+				display: none;
+
+				// scss-lint:disable NestingDepth
+				.c-coming-up--inside-betslip & {
+					display: inline;
+				}
+			}
+
+			.c-event-info-view__league {
+				border-right: 2px solid $table-border !important;
+
+				// scss-lint:disable NestingDepth
+				.c-coming-up--inside-betslip & {
+					border: 0 !important;
+				}
+			}
+		}
+	}
+}

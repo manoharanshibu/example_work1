@@ -1,0 +1,137 @@
+@import "variables";
+@import "mixins";
+
+.c-casino-widget {
+	border-bottom: 1px solid $casino-widget-border;
+	padding: 0;
+
+	h3 {
+	  color: white;
+	}
+
+	&:last-child {
+		border-bottom: 0;
+	}
+
+	&__header {
+		margin-bottom: $spacer / 2;
+	}
+
+	&__title {
+		text-transform: uppercase;
+	}
+
+	&__link div {
+		@include link-color($casino-widget-link-text, $casino-widget-link-text);
+		//background: $brand-secondary;
+		padding: 2px 5px;
+
+		h3 {
+			display: inline-block;
+		}
+
+		p {
+			display: inline-block;
+			position: relative;
+		    top: -1px;
+		    left: 10px;
+		}
+	}
+
+	&__row {
+		padding: $spacer;
+		overflow: hidden;
+
+		&--highlighted {
+
+			//scss-lint:disable NestingDepth
+			.c-casino-widget {
+				&__link {
+					border-radius: 2px 0 0 2px;
+					background-color: darken($brand-secondary, 3%);
+					transition: background-color 0.3s;
+
+					&:hover {
+						background-color: darken($brand-secondary, 10%);
+						@include link-color($casino-widget-link-text, $casino-widget-link-text);
+					}
+				}
+			}
+		}
+	}
+
+	&__category-info {
+		height: auto;
+		background: transparent;
+		box-sizing: border-box;
+		overflow: auto;
+		cursor: pointer;
+		position: relative;
+		background-repeat: no-repeat;
+		background-size: 80%, cover;
+		background-position: 50% $spacer, 50% 0;
+		background-color: $casino-tile-content-bg;
+		padding: $spacer / 2;
+	}
+
+	&__modal {
+		height: 100%;
+		background-repeat: no-repeat;
+	}
+}
+
+@include media-breakpoint-up(sm) {
+	.c-casino-widget {
+		&__row {
+			&--tile-container-filtered:nth-child(1n+5) {
+				display: none;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up(md) {
+	.c-casino-widget {
+		&__row {
+			border: 0;
+			padding: 0 0 ($spacer / 2);
+
+			&--tile-container-filtered:nth-child(6n) {
+				display: block;
+			}
+		}
+
+		&__category-info {
+			height: 130px;
+
+			@include hover {
+				.c-casino-widget__category-title {
+					color: $casino-tile-header-tile-bg-hover;
+				}
+			}
+		}
+
+		&__category-info-baja
+		{
+		  height: 215px;
+		}
+
+		&__category-title {
+			@include font-size(24px);
+		}
+
+		&__category-all-events {
+			@include font-size(18px);
+		}
+	}
+}
+
+@include media-breakpoint-up(xl) {
+	.c-casino-widget {
+		&__row {
+			&--tile-container-filtered:nth-child(1n+5),  {
+				display: block;
+			}
+		}
+	}
+}

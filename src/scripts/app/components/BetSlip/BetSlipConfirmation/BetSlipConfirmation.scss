@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixins";
+
+.c-bet-slip-confirmation {
+	padding: $spacer / 2;
+	background: $betslip-confirm-bg;
+	color: $betslip-confirm-text;
+
+	&__summary {
+		background-color: transparent;
+		display: flex;
+		justify-content: center;
+		padding: $spacer / 2;
+		font-weight: 700;
+	}
+
+	&__right {
+		margin-left: 4px;
+		color: $betslip-confirm-right-text;
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	&__headline {
+		padding: $spacer / 2;
+		margin-bottom: $spacer / 2;
+		background-color: $betslip-confirm-headline-bg;
+		color: $betslip-confirm-headline-text;
+	}
+
+	&__header {
+		margin: 0;
+	}
+
+}
+
+.c-selection-group {
+	margin-bottom: $spacer / 2;
+	background: $betslip-selections-bg;
+
+	&__header {
+		background-color: $betslip-grouped-header-bg;
+		padding: ($spacer / 4) ($spacer / 2);
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	&__summary {
+		padding: ($spacer / 2);
+	}
+
+	&__list {
+		margin-bottom: ($spacer / 2);
+	}
+
+	&__info {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__date {
+		color: $betslip-confirm-date-text;
+	}
+
+	&__stake,
+	&__potential-returns {
+		display: block;
+	}
+
+	&__formatted-number {
+		color: $betslip-confirm-amount-text;
+	}
+}

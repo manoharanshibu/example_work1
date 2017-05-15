@@ -1,0 +1,18 @@
+@import "mixins";
+@import "variables";
+
+.c-promotion-tile--casino {
+
+	background-repeat: no-repeat;
+	background-size: 80%, cover;
+	background-position: 50% 1.42857rem, 50% 0;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+
+	&.c-promotion-tile--slider{
+		background-size: 40%, cover;
+		background-position: 50%, 50% 0px;
+	}
+
+}

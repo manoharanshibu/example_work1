@@ -1,0 +1,214 @@
+@import "variables";
+@import "mixins";
+
+.c-burger-section {
+  // if my parent is a burger section dont add padding
+	.c-burger-section__body & {
+		.c-burger-section__body {
+			margin-left: -$spacer;
+			margin-right: -$spacer;
+
+			border-bottom: 0;
+		}
+
+		.c-burger-section__title {
+			padding: ($spacer / 2) 0;
+		}
+	}
+
+	&__header {
+		border-bottom: 1px solid $sidebar-burger-border;
+
+		.is-open & {
+			border-bottom: 0;
+		}
+	}
+
+	&__close {
+		float: left;
+		cursor: pointer;
+		color: $brand-danger;
+		margin: $spacer / 2 (-$spacer / 4) $spacer / 2  $spacer;
+
+		@include media-breakpoint-down(xs) {
+			margin: $spacer / 2 $spacer / 4 $spacer / 2  $spacer * 1.5;
+		}
+	}
+
+	&__sport-header,
+	&__title {
+		text-transform: uppercase;
+		color: $brand-primary;
+		cursor: pointer;
+		letter-spacing: 0.5px;
+		margin: 0;
+		padding: ($spacer / 2) $spacer;
+
+		@include media-breakpoint-down(xs) {
+			padding-left: $spacer / 2;
+			padding-right: $spacer / 2;
+		}
+	}
+
+	&__sport-header {
+		color: $brand-primary;
+		padding-bottom: 0;
+		@include font-size(15px);
+	}
+
+	&__title {
+		display: flex;
+		justify-content: space-between;
+		color: $sidebar-burger-title-text;
+		@include font-size(14px);
+
+		.is-open & {
+			padding-bottom: $spacer / 4;
+		}
+
+		&--active {
+			@include link-color($active, $active);
+		}
+
+	}
+
+	&__title-icon {
+		margin-left: auto;
+		position: relative;
+		top: 2px;
+
+		.c-burger-section__title--has-lozenge & {
+			margin-left: $spacer / 2;
+		}
+	}
+
+	&__title-lozenge {
+		.c-burger-section__title--has-lozenge & {
+			margin-left: auto;
+		}
+	}
+
+	&__body {
+		padding: 0 $spacer;
+
+		@include media-breakpoint-down(xs) {
+			padding-left: $spacer / 2;
+			padding-right: $spacer / 2;
+		}
+
+		&--no-indent {
+			padding: 0;
+		}
+
+		.g-select-field {
+			background-color: $burger-select-bg;
+		}
+
+		.is-open & {
+			border-bottom: 1px solid $sidebar-burger-border;
+		}
+	}
+
+	&--borderless {
+		.c-burger-section__body {
+			border-bottom: 0;
+		}
+
+		.c-burger-section__header {
+			border: 0;
+		}
+
+		.c-burger-section__title {
+			padding-bottom: $spacer / 4;
+		}
+
+		.c-burger-section__item:last-of-type {
+			padding-bottom: 0;
+		}
+
+	}
+
+	&__no-dropdown-link {
+		border-bottom: 1px solid $sidebar-burger-border;
+
+		.c-burger-section__title {
+			padding-bottom: $spacer / 2;
+		}
+	}
+
+	&--border-top {
+		border-top: 1px solid $sidebar-burger-border;
+		margin-top: $spacer / 2;
+	}
+
+	&__item-link {
+		font-weight: 400;
+		@include font-size(15px);
+		@include link-color($sidebar-burger-link-text, $sidebar-burger-link-text-hover);
+
+		.c-burger-section__item.is-open & {
+			@include link-color($active, $active);
+		}
+
+		@include media-breakpoint-down(sm) {
+			padding: ($spacer / 2) 0;
+		}
+
+	}
+
+	&__link-icon {
+		margin-left: 4px;
+	}
+
+
+	&__item {
+		cursor: pointer;
+		list-style-type: none;
+
+		&:last-of-type {
+			padding-bottom: $spacer / 2;
+		}
+
+		.c-burger-section__dropdown {
+			padding: $spacer / 2;
+			padding-right: 0;
+		}
+	}
+
+	&__item-name {
+		max-width: 200px;
+		display: inline-block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		line-height: 18px;
+	}
+
+	&__dropdown {
+		text-transform: capitalize;
+
+		&--baja {
+		  	text-transform: none;
+		}
+
+		&--second-level {
+			padding: $spacer / 2;
+			padding-right: 0;
+		}
+
+		i {
+			@include icon-vertical-centering;
+			left: 0;
+		}
+
+	}
+
+	&__odds-format {
+		position: relative;
+		padding-bottom: $spacer;
+		@include custom-dropdown-styles(7px, 26px);
+		select {
+			width: 100%;
+		}
+	}
+}

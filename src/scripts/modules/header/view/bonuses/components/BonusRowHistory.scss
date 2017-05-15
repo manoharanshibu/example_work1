@@ -1,0 +1,14 @@
+@import "variables";
+@import "mixins";
+
+.c-complete-box {
+	display: inline-block;
+	position: relative;
+	border: 0;
+	text-align: center;
+	line-height: 2.5rem;
+	width: 150px;
+	color: $black;
+	background-color: $grey-80;
+  	border: 1px solid $black;
+}

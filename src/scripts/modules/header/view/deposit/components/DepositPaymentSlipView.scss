@@ -1,0 +1,8 @@
+@import "variables";
+
+.c-deposit-payment-slip {
+	&__instructions {
+		border: 2px solid $grey-20;
+	  	padding: $spacer / 2;
+	}
+}
