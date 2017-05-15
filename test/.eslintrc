@@ -1,0 +1,14 @@
+{
+  "extends": "ats/frontend/test",
+  "globals": {
+    "enzyme": false,
+    "shallow": false,
+    "render": false,
+    "mount": false
+  },
+  "rules": {
+    "react/jsx-curly-spacing": 0,
+    "prefer-arrow-callback": 0,
+    "no-unused-expressions": 0
+  }
+}

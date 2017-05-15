@@ -1,0 +1,17 @@
+[ignore]
+.*/build/.*
+.*/node_modules/.*
+.*/dist/.*
+.*/test/.*
+package.json
+gulpfile.babel.js
+build.properties
+
+[include]
+
+[libs]
+./node_modules
+src/scripts/app/interfaces
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

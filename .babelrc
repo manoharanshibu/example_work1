@@ -1,0 +1,30 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react",
+    "babel-preset-ats-tests"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "add-module-exports"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    },
+    "test": {
+      "retainLines": true,
+      "plugins": [
+        [ "babel-plugin-webpack-alias", { "config": "build/webpack.config.babel.js" } ]
+      ]
+    }
+  },
+  "compact": true
+}
